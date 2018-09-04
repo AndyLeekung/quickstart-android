@@ -1,3 +1,12 @@
+# CS 4261 Paired Programming Assignment 1
+
+This repo is a forked sample for the first assignment of CS 4261. For this assignment we are using the firestore sample with the app FireEats. This app interfaces with the Firestore service to store different restaurants and their ratings.
+
+To get this building on your device you will need to be added to our Firebase project, FireEats, and add the google-services.json file in the `app` directory.
+
+### Original README
+---
+
 # Firebase Quickstarts for Android
 
 A collection of quickstart samples demonstrating the Firebase APIs on Android. For more information, see https://firebase.google.com.
