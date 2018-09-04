@@ -27,6 +27,8 @@
     <string name="sorted_by_price">sorted by price</string>
     <string name="sorted_by_popularity">sorted by popularity</string>
 
+    <string name="add_my_restaurant">Add My Restaurant</string>
+
     <string name="add_random_items">Add Random Items</string>
     <string name="sign_out">Sign Out</string>
     <string name="divider_bullet">•</string>

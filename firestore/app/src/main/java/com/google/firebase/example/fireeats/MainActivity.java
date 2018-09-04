@@ -41,6 +41,7 @@ import com.google.firebase.firestore.WriteBatch;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -172,6 +173,9 @@ public class MainActivity extends AppCompatActivity implements
                 AuthUI.getInstance().signOut(this);
                 startSignIn();
                 break;
+            case R.id.menu_add_my_restaurant:
+                onAddMyRestauraunt();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -294,6 +298,33 @@ public class MainActivity extends AppCompatActivity implements
                 batch.set(restRef.collection("ratings").document(), rating);
             }
         }
+
+        batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Write batch succeeded.");
+                } else {
+                    Log.w(TAG, "write batch failed.", task.getException());
+                }
+            }
+        });
+    }
+
+    private void onAddMyRestauraunt() {
+        WriteBatch batch = mFirestore.batch();
+        DocumentReference restRef = mFirestore.collection("restaurants").document();
+
+        final String RESTAURANT_URL_FMT = "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_%d.png";
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName("My Restaurant");
+        restaurant.setCity("Jacksonville");
+        restaurant.setCategory("Poke Bowls");
+        restaurant.setPhoto(String.format(Locale.getDefault(), RESTAURANT_URL_FMT, 2));
+        restaurant.setPrice(2);
+        restaurant.setNumRatings(0);
+
+        batch.set(restRef, restaurant);
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
