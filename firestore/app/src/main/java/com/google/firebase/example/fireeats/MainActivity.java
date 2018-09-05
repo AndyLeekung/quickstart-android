@@ -316,12 +316,14 @@ public class MainActivity extends AppCompatActivity implements
         DocumentReference restRef = mFirestore.collection("restaurants").document();
 
         final String RESTAURANT_URL_FMT = "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_%d.png";
-        Restaurant restaurant = new Restaurant();
+        /*Restaurant restaurant = new Restaurant();
         restaurant.setName("My Restaurant");
         restaurant.setCity("Jacksonville");
         restaurant.setCategory("Poke Bowls");
         restaurant.setPhoto(String.format(Locale.getDefault(), RESTAURANT_URL_FMT, 2));
         restaurant.setPrice(2);
+        restaurant.setNumRatings(0);*/
+        Restaurant restaurant = RestaurantUtil.getRandom(this);
         restaurant.setNumRatings(0);
 
         batch.set(restRef, restaurant);
